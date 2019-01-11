@@ -9,7 +9,7 @@
         <th>Casa</th>
         <th>Detalle</th>
       </tr>
-      <tr v-for="character in characters">
+      <tr v-for="character in characters" :key="character._id">
         <td>{{ character.name }}</td>
         <td>{{ character.house }}</td>
         <td> <button @click="goToDetail(character._id)">Ver detalle</button> </td>
