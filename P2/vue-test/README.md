@@ -31,3 +31,28 @@ El resto de archivos son configuraciones extras de vue-cli.
 Todo estilo que se le de a ambos componentes viene como un plus y sera considerado en la evaluación de la prueba.
 
 Adicionalmente si se desea consumir y aplicar otros recursos del api, también sera considerado como un plus al momento de evaluar la prueba.
+
+
+
+## Cambios incluidos en Fork 📄
+
+Se incluyen las siguientes dependencias o paquetes (basicamente para dar estilos al proyecto)
+* [bootstrap-vue](https://github.com/bootstrap-vue/bootstrap-vue)
+* [sass-loader](https://github.com/webpack-contrib/sass-loader)
+* [node-sass](https://github.com/sass/node-sass)
+* [gsap](https://github.com/greensock/GreenSock-JS)
+
+## Detalle solucion empleada ⌨️
+
+_Para el empleo de la solucion se creo un componente de **Detalle** del personaje y este es invocado a traves de su url desde metodo pre definido en componente **List**_
+```
+goToDetail(id)
+```
+
+_En el archivo ruotes se incluyo la nueva ruta de detalle del personaje (/details/:id) y luego se invova como un dialogo modal desde el listado inicial_
+
+_Al invocarse el detalle, en los parametros de la url viaja el id del personaje, este se evalua en el evento **created** y desde aca se llama a la API para obtener el detalle (a traves del servicio **gotService**)_
+
+_Una vez obtenida la informacion desde la API, se recorren las propiedades del objeto y se muestran en el dialogo modal_
+
+_Finalmente, al presionar el boton cerrar del dialogo modal, se vuelve al listado de personajes (**this.$router.go(-1)**)_

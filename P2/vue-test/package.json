@@ -11,6 +11,10 @@
   },
   "dependencies": {
     "axios": "0.17.1",
+    "bootstrap-vue": "^2.0.0-rc.11",
+    "gsap": "^2.0.2",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
     "vue": "^2.5.11",
     "vue-router": "3.0.1",
     "vuex": "3.0.1"
