@@ -93,7 +93,7 @@ function sortTeamsByWins() {
 // 3 Arreglo de objetos en donde se muestre el nombre de las ligas y la sumatoria de las victorias de los equipos que pertenecen a ellas.
 // 3 Arreglo de objetos en donde se muestre el nombre de las ligas y la sumatoria de las victorias (en la champion league) de los equipos que pertenecen a ellas.
 function leaguesWithWins() {
-  let arrayLigas = leagues.map((league) => ({ id: league.id, name: league.name, wins: 0 }))
+  let arrayLigas = leagues.map(league => ({ id: league.id, name: league.name, wins: 0 }))
 
   teamsByLeague.reduce((array, team) => {
     array.find(league => league.id == team.leagueId).wins += winsByTeams.find(t => t.teamId === team.teamId).wins
@@ -105,15 +105,29 @@ function leaguesWithWins() {
 
 // 4 Objeto en que las claves sean los nombres de las ligas y los valores el nombre del equipo con la menor cantidad de victorias en champions.
 function leaguesWithTeamWithLestWins() {
-  // CODE HERE
+  let arrayTeams = teams.map(team => ({
+    id: team.id,
+    name: team.name,
+    leagueId: teamsByLeague.find(l => l.teamId === team.id).leagueId,
+    wins: winsByTeams.find(t => t.teamId === team.id).wins
+  }))
 
-  //Agrupar equipos por liga
-  //Luego obtener las victorias en la champion de cada equipo
-  //Luego, por cada liga obtener el nombre del equipo con menos victorias y vincular nombre a liga
-  //devolver map con clave igual a nombre de liga y valor igual a equipo menos ganador
+  let arrayLeagues = leagues.map(league => ({
+    id: league.id,
+    name: league.name,
+    teams: arrayTeams.filter(team => team.leagueId === league.id)
+  }))
 
-  //4 arrays iniciales involucrados
-  //teams, leagues, teamsByLeague y winsByTeams
+  let mapLeagues = arrayLeagues
+    .reduce((map, item) => {
+      map.set(
+        /*key*/ item.name,
+        /*value*/ item.teams.reduce((min, current) => { return current.wins < min.wins ? current : min }, { wins: Number.MAX_SAFE_INTEGER }).name
+      );
+      return map;
+    }, new Map())
+
+  return mapLeagues
 }
 
 // 5 Objeto en que las claves sean los nombres de las ligas y los valores el nombre del equipo con la mayor cantidad de victorias en champions.
