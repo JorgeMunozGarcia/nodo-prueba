@@ -140,14 +140,16 @@ function sortLeaguesByTeamsByWins() {
 
 // 7 Arreglo con los nombres de las ligas ordenadas de mayor a menor por la cantidad de equipos que participan en ellas.
 function sortLeaguesByTeams() {
-  // CODE HERE
+  let arrayLigas = leagues
+    .map(league => ({
+      id: league.id,
+      name: league.name,
+      quantityTeams: teamsByLeague
+        .filter(i => i.leagueId === league.id).length
+    }))
+    .sort((league1, league2) => league2.quantityTeams - league1.quantityTeams)
 
-  //Agrupar equipos por liga
-  //Luego por cada liga sumar la cantidad de equipos que tiene
-  //devolver Array con nombres de ligas ordenados descendentemente por cantidad de equipos
-
-  //2 arrays iniciales involucrados
-  //leagues, teamsByLeague
+  return arrayLigas.map(league => league.name)
 }
 
 // 8 Agregar un nuevo equipo con datos ficticios a "teams", asociarlo a la liga de Francia y agregar un total de 4 victorias en champions.
@@ -183,7 +185,7 @@ async function teamNamesUpperCase() {
   const dummyWait = (t) => new Promise(r => setTimeout(r, t))
 
   const upperNames = async () => {
-    let listNames = [];
+    let listNames = []
     for (const team of teams) {
       await dummyWait(100)
       listNames.push(team.name.toUpperCase())
@@ -203,14 +205,14 @@ console.log('Pregunta 2')
 console.log(sortTeamsByWins())
 console.log('Pregunta 3')
 console.log(leaguesWithWins())
-// console.log('Pregunta 4')
-// console.log((leaguesWithTeamWithLestWins()))
-// console.log('Pregunta 5')
-// console.log((leaguesWithTeamWithMostWins()))
+console.log('Pregunta 4')
+console.log((leaguesWithTeamWithLestWins()))
+console.log('Pregunta 5')
+console.log((leaguesWithTeamWithMostWins()))
 console.log('Pregunta 6')
 console.log((sortLeaguesByTeamsByWins()))
-// console.log('Pregunta 7')
-// console.log((sortLeaguesByTeams()))
+console.log('Pregunta 7')
+console.log((sortLeaguesByTeams()))
 console.log('Pregunta 8')
 console.log((newTeamRanking()))
 console.log('Pregunta 9')
