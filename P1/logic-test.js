@@ -77,7 +77,7 @@ function listTeamsIds() {
 function listTeamsByCountry() {
   return teams
     .map((team) => ({ name: team.name, country: team.country }))
-    .sort((team1, team2) => team1.country.localeCompare(team2.country));
+    .sort((team1, team2) => team1.country.localeCompare(team2.country))
 }
 
 // 2 Arreglo con los nombres de los equipos ordenados de mayor a menor por la cantidad de victorias en champions league.
@@ -85,32 +85,74 @@ function sortTeamsByWins() {
   let arrayTeamWins = teams.map((team) => ({ id: team.id, name: team.name, wins: winsByTeams.find(w => w.teamId === team.id).wins }));
   return arrayTeamWins
     .sort((team1, team2) => team2.wins - team1.wins)
-    .map((team) => team.name);
+    .map((team) => team.name)
 }
 
 // 3 Arreglo de objetos en donde se muestre el nombre de las ligas y la sumatoria de las victorias de los equipos que pertenecen a ellas.
+// 3 Arreglo de objetos en donde se muestre el nombre de las ligas y la sumatoria de las victorias (en la champion league) de los equipos que pertenecen a ellas.
 function leaguesWithWins() {
   // CODE HERE
+
+  //Agrupar equipos por liga
+  //Luego por cada liga obtener las victorias en la champion de cada equipo
+  //Luego por cada liga sumar la cantidad de victorias por cada liga y vincular dato a liga
+  //devolver Array con nombres de liga y cantidad de victorias
+
+  //3 arrays iniciales involucrados
+  //leagues, teamsByLeague y winsByTeams
 }
 
 // 4 Objeto en que las claves sean los nombres de las ligas y los valores el nombre del equipo con la menor cantidad de victorias en champions.
 function leaguesWithTeamWithLestWins() {
   // CODE HERE
+
+  //Agrupar equipos por liga
+  //Luego obtener las victorias en la champion de cada equipo
+  //Luego, por cada liga obtener el nombre del equipo con menos victorias y vincular nombre a liga
+  //devolver map con clave igual a nombre de liga y valor igual a equipo menos ganador
+
+  //4 arrays iniciales involucrados
+  //teams, leagues, teamsByLeague y winsByTeams
 }
 
 // 5 Objeto en que las claves sean los nombres de las ligas y los valores el nombre del equipo con la mayor cantidad de victorias en champions.
 function leaguesWithTeamWithMostWins() {
   // CODE HERE
+
+  //Agrupar equipos por liga
+  //Luego obtener las victorias en la champion de cada equipo
+  //Luego, por cada liga obtener el nombre del equipo con más victorias y vincular nombre a liga
+  //devolver map con clave igual a nombre de liga y valor igual a equipo más ganador
+
+  //4 arrays iniciales involucrados
+  //teams, leagues, teamsByLeague y winsByTeams
+  //Igual a pregunta 4 pero con orden inverso... gift :)
 }
 
-// 6 Arreglo con los nombres de las ligas ordenadas de mayor a menor por la cantidad de victorias de sus equipos.
+// 6 Arreglo con los nombres de las ligas ordenadas de mayor a menor por la cantidad de victorias de sus equipos (en la champion league).
 function sortLeaguesByTeamsByWins() {
   // CODE HERE
+
+  //muy parecido a pregunta 3
+  //Agrupar equipos por liga
+  //Luego por cada liga obtener las victorias en la champion de cada equipo
+  //Luego por cada liga sumar la cantidad de victorias por cada liga y vincular dato a liga
+  //devolver Array con nombres de ligas ordenados descendentemente por cantidad de victorias
+
+  //3 arrays iniciales involucrados
+  //leagues, teamsByLeague y winsByTeams
 }
 
 // 7 Arreglo con los nombres de las ligas ordenadas de mayor a menor por la cantidad de equipos que participan en ellas.
 function sortLeaguesByTeams() {
   // CODE HERE
+
+  //Agrupar equipos por liga
+  //Luego por cada liga sumar la cantidad de equipos que tiene
+  //devolver Array con nombres de ligas ordenados descendentemente por cantidad de equipos
+
+  //2 arrays iniciales involucrados
+  //leagues, teamsByLeague
 }
 
 // 8 Agregar un nuevo equipo con datos ficticios a "teams", asociarlo a la liga de Francia y agregar un total de 4 victorias en champions.
@@ -118,6 +160,11 @@ function sortLeaguesByTeams() {
 // No modificar arreglos originales para no alterar las respuestas anteriores al correr la solución
 function newTeamRanking() {
   // CODE HERE
+
+  //Igual simple
+  //Se agregan valores a arrays involucrados (teams, teamsByLeague y winsByTeams)
+  //Luego se llama a metodo sortTeamsByWins y se almacena array de respuesta
+  //Finalmente devolver el ranking del nuevo equipo en el array de respuesta  
 }
 
 // 9 Realice una función que retorne una promesa con los nombres de los equipos en upper case.
@@ -128,10 +175,25 @@ function newTeamRanking() {
 async function getTeamsNamesAsUpperCase() {
   let response
   // ------MAKE AWAIT CALL HERE------
-
+  response = await teamNamesUpperCase()
   // --------------------------------
   console.log('response:')
   console.log(response)
+}
+
+async function teamNamesUpperCase() {
+  const dummyWait = (t) => new Promise(r => setTimeout(r, t));
+
+  const upperNames = async () => {
+    let listNames = [];
+    for (const team of teams) {
+      await dummyWait(100);
+      listNames.push(team.name.toUpperCase());
+    }
+    return listNames;
+  }
+
+  return new Promise(r => r(upperNames()));
 }
 
 // Impresión de soluciones. No modificar.
@@ -141,17 +203,17 @@ console.log('Pregunta 1')
 console.log(listTeamsByCountry())
 console.log('Pregunta 2')
 console.log(sortTeamsByWins())
-// console.log('Pregunta 3')
-// console.log(leaguesWithWins())
-// console.log('Pregunta 4')
-// console.log((leaguesWithTeamWithLestWins()))
-// console.log('Pregunta 5')
-// console.log((leaguesWithTeamWithMostWins()))
-// console.log('Pregunta 6')
-// console.log((sortLeaguesByTeamsByWins()))
-// console.log('Pregunta 7')
-// console.log((sortLeaguesByTeams()))
-// console.log('Pregunta 8')
-// console.log((newTeamRanking()))
-// console.log('Pregunta 9')
-// console.log(getTeamsNamesAsUpperCase())
+console.log('Pregunta 3')
+console.log(leaguesWithWins())
+console.log('Pregunta 4')
+console.log((leaguesWithTeamWithLestWins()))
+console.log('Pregunta 5')
+console.log((leaguesWithTeamWithMostWins()))
+console.log('Pregunta 6')
+console.log((sortLeaguesByTeamsByWins()))
+console.log('Pregunta 7')
+console.log((sortLeaguesByTeams()))
+console.log('Pregunta 8')
+console.log((newTeamRanking()))
+console.log('Pregunta 9')
+console.log(getTeamsNamesAsUpperCase())
