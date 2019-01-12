@@ -84,8 +84,8 @@ function listTeamsByCountry() {
 function sortTeamsByWins() {
   let arrayTeamWins = teams.map((team) => ({ id: team.id, name: team.name, wins: winsByTeams.find(w => w.teamId === team.id).wins }));
   return arrayTeamWins
-  .sort((team1, team2) => team2.wins - team1.wins)
-  .map((team) => team.name);
+    .sort((team1, team2) => team2.wins - team1.wins)
+    .map((team) => team.name);
 }
 
 // 3 Arreglo de objetos en donde se muestre el nombre de las ligas y la sumatoria de las victorias de los equipos que pertenecen a ellas.
