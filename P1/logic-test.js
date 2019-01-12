@@ -69,49 +69,51 @@ const winsByTeams = [
 */
 
 // 0 Arreglo con los ids de los equipos (función de ejemplo)
-function listTeamsIds () {
+function listTeamsIds() {
   return teams.map((client) => client.id)
 }
 
 // 1 Arreglo con los nombres de los equipos y el país al que pertenecen, ordenados alfabéticamente por el nombre de su país de origen.
-function listTeamsByCountry () {
-  // CODE HERE
+function listTeamsByCountry() {
+  return teams
+    .map((team) => ({ name: team.name, country: team.country }))
+    .sort((team1, team2) => team1.country.localeCompare(team2.country));
 }
 
 // 2 Arreglo con los nombres de los equipos ordenados de mayor a menor por la cantidad de victorias en champions league.
-function sortTeamsByWins () {
+function sortTeamsByWins() {
   // CODE HERE
 }
 
 // 3 Arreglo de objetos en donde se muestre el nombre de las ligas y la sumatoria de las victorias de los equipos que pertenecen a ellas.
-function leaguesWithWins () {
+function leaguesWithWins() {
   // CODE HERE
 }
 
 // 4 Objeto en que las claves sean los nombres de las ligas y los valores el nombre del equipo con la menor cantidad de victorias en champions.
-function leaguesWithTeamWithLestWins () {
+function leaguesWithTeamWithLestWins() {
   // CODE HERE
 }
 
 // 5 Objeto en que las claves sean los nombres de las ligas y los valores el nombre del equipo con la mayor cantidad de victorias en champions.
-function leaguesWithTeamWithMostWins () {
+function leaguesWithTeamWithMostWins() {
   // CODE HERE
 }
 
 // 6 Arreglo con los nombres de las ligas ordenadas de mayor a menor por la cantidad de victorias de sus equipos.
-function sortLeaguesByTeamsByWins () {
+function sortLeaguesByTeamsByWins() {
   // CODE HERE
 }
 
 // 7 Arreglo con los nombres de las ligas ordenadas de mayor a menor por la cantidad de equipos que participan en ellas.
-function sortLeaguesByTeams () {
+function sortLeaguesByTeams() {
   // CODE HERE
 }
 
 // 8 Agregar un nuevo equipo con datos ficticios a "teams", asociarlo a la liga de Francia y agregar un total de 4 victorias en champions.
 // Luego devolver el lugar que ocupa este equipo en el ranking de la pregunta 2.
 // No modificar arreglos originales para no alterar las respuestas anteriores al correr la solución
-function newTeamRanking () {
+function newTeamRanking() {
   // CODE HERE
 }
 
@@ -120,7 +122,7 @@ function newTeamRanking () {
 // recuerde que debe esperar el retorno de función asíncrona para que su resultado pueda ser mostrado por el
 // console.log. Utilice async await para la llamada asíncrona a la función.
 // NOTA: solo debe crear la función asíncrona y agregar la llamada en la siguiente función.
-async function getTeamsNamesAsUpperCase () {
+async function getTeamsNamesAsUpperCase() {
   let response
   // ------MAKE AWAIT CALL HERE------
 
