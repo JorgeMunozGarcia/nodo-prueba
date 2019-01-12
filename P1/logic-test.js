@@ -82,7 +82,10 @@ function listTeamsByCountry() {
 
 // 2 Arreglo con los nombres de los equipos ordenados de mayor a menor por la cantidad de victorias en champions league.
 function sortTeamsByWins() {
-  // CODE HERE
+  let arrayTeamWins = teams.map((team) => ({ id: team.id, name: team.name, wins: winsByTeams.find(w => w.teamId === team.id).wins }));
+  return arrayTeamWins
+  .sort((team1, team2) => team2.wins - team1.wins)
+  .map((team) => team.name);
 }
 
 // 3 Arreglo de objetos en donde se muestre el nombre de las ligas y la sumatoria de las victorias de los equipos que pertenecen a ellas.
@@ -138,17 +141,17 @@ console.log('Pregunta 1')
 console.log(listTeamsByCountry())
 console.log('Pregunta 2')
 console.log(sortTeamsByWins())
-console.log('Pregunta 3')
-console.log(leaguesWithWins())
-console.log('Pregunta 4')
-console.log((leaguesWithTeamWithLestWins()))
-console.log('Pregunta 5')
-console.log((leaguesWithTeamWithMostWins()))
-console.log('Pregunta 6')
-console.log((sortLeaguesByTeamsByWins()))
-console.log('Pregunta 7')
-console.log((sortLeaguesByTeams()))
-console.log('Pregunta 8')
-console.log((newTeamRanking()))
-console.log('Pregunta 9')
-console.log(getTeamsNamesAsUpperCase())
+// console.log('Pregunta 3')
+// console.log(leaguesWithWins())
+// console.log('Pregunta 4')
+// console.log((leaguesWithTeamWithLestWins()))
+// console.log('Pregunta 5')
+// console.log((leaguesWithTeamWithMostWins()))
+// console.log('Pregunta 6')
+// console.log((sortLeaguesByTeamsByWins()))
+// console.log('Pregunta 7')
+// console.log((sortLeaguesByTeams()))
+// console.log('Pregunta 8')
+// console.log((newTeamRanking()))
+// console.log('Pregunta 9')
+// console.log(getTeamsNamesAsUpperCase())
