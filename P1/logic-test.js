@@ -91,15 +91,14 @@ function sortTeamsByWins() {
 // 3 Arreglo de objetos en donde se muestre el nombre de las ligas y la sumatoria de las victorias de los equipos que pertenecen a ellas.
 // 3 Arreglo de objetos en donde se muestre el nombre de las ligas y la sumatoria de las victorias (en la champion league) de los equipos que pertenecen a ellas.
 function leaguesWithWins() {
-  // CODE HERE
+  let arrayLigas = leagues.map((league) => ({ id: league.id, name: league.name, wins: 0 }));
 
-  //Agrupar equipos por liga
-  //Luego por cada liga obtener las victorias en la champion de cada equipo
-  //Luego por cada liga sumar la cantidad de victorias por cada liga y vincular dato a liga
-  //devolver Array con nombres de liga y cantidad de victorias
+  teamsByLeague.reduce((array, team) => {
+    array.find(league => league.id == team.leagueId).wins += winsByTeams.find(t => t.teamId === team.teamId).wins;
+    return array;
+  }, arrayLigas);
 
-  //3 arrays iniciales involucrados
-  //leagues, teamsByLeague y winsByTeams
+  return arrayLigas.map(item => ({ name: item.name, wins: item.wins }));
 }
 
 // 4 Objeto en que las claves sean los nombres de las ligas y los valores el nombre del equipo con la menor cantidad de victorias en champions.
@@ -197,23 +196,23 @@ async function teamNamesUpperCase() {
 }
 
 // Impresión de soluciones. No modificar.
-console.log('Pregunta 0')
-console.log(listTeamsIds())
-console.log('Pregunta 1')
-console.log(listTeamsByCountry())
-console.log('Pregunta 2')
-console.log(sortTeamsByWins())
+// console.log('Pregunta 0')
+// console.log(listTeamsIds())
+// console.log('Pregunta 1')
+// console.log(listTeamsByCountry())
+// console.log('Pregunta 2')
+//console.log(sortTeamsByWins())
 console.log('Pregunta 3')
 console.log(leaguesWithWins())
-console.log('Pregunta 4')
-console.log((leaguesWithTeamWithLestWins()))
-console.log('Pregunta 5')
-console.log((leaguesWithTeamWithMostWins()))
-console.log('Pregunta 6')
-console.log((sortLeaguesByTeamsByWins()))
-console.log('Pregunta 7')
-console.log((sortLeaguesByTeams()))
-console.log('Pregunta 8')
-console.log((newTeamRanking()))
-console.log('Pregunta 9')
-console.log(getTeamsNamesAsUpperCase())
+// console.log('Pregunta 4')
+// console.log((leaguesWithTeamWithLestWins()))
+// console.log('Pregunta 5')
+// console.log((leaguesWithTeamWithMostWins()))
+// console.log('Pregunta 6')
+// console.log((sortLeaguesByTeamsByWins()))
+// console.log('Pregunta 7')
+// console.log((sortLeaguesByTeams()))
+// console.log('Pregunta 8')
+// console.log((newTeamRanking()))
+// console.log('Pregunta 9')
+// console.log(getTeamsNamesAsUpperCase())
