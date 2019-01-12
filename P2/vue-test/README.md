@@ -7,6 +7,7 @@ npm install
 
 # correr el proyecto
 npm run dev
+
 ```
 
 Este ejercicio consta en obtener el detalle de cada personaje de Game Of Thrones a través del api (https://api.got.show/api/characters/byId/:id)
@@ -31,6 +32,7 @@ El resto de archivos son configuraciones extras de vue-cli.
 Todo estilo que se le de a ambos componentes viene como un plus y sera considerado en la evaluación de la prueba.
 
 Adicionalmente si se desea consumir y aplicar otros recursos del api, también sera considerado como un plus al momento de evaluar la prueba.
+```
 
 
 
