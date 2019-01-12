@@ -132,16 +132,29 @@ function leaguesWithTeamWithLestWins() {
 
 // 5 Objeto en que las claves sean los nombres de las ligas y los valores el nombre del equipo con la mayor cantidad de victorias en champions.
 function leaguesWithTeamWithMostWins() {
-  // CODE HERE
+  let arrayTeams = teams.map(team => ({
+    id: team.id,
+    name: team.name,
+    leagueId: teamsByLeague.find(l => l.teamId === team.id).leagueId,
+    wins: winsByTeams.find(t => t.teamId === team.id).wins
+  }))
 
-  //Agrupar equipos por liga
-  //Luego obtener las victorias en la champion de cada equipo
-  //Luego, por cada liga obtener el nombre del equipo con más victorias y vincular nombre a liga
-  //devolver map con clave igual a nombre de liga y valor igual a equipo más ganador
+  let arrayLeagues = leagues.map(league => ({
+    id: league.id,
+    name: league.name,
+    teams: arrayTeams.filter(team => team.leagueId === league.id)
+  }))
 
-  //4 arrays iniciales involucrados
-  //teams, leagues, teamsByLeague y winsByTeams
-  //Igual a pregunta 4 pero con orden inverso... gift :)
+  let mapLeagues = arrayLeagues
+    .reduce((map, item) => {
+      map.set(
+        /*key*/ item.name,
+        /*value*/ item.teams.reduce((max, current) => { return current.wins > max.wins ? current : max }, { wins: Number.MIN_SAFE_INTEGER }).name
+      );
+      return map;
+    }, new Map())
+
+  return mapLeagues
 }
 
 // 6 Arreglo con los nombres de las ligas ordenadas de mayor a menor por la cantidad de victorias de sus equipos (en la champion league).
